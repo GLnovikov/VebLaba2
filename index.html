@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>История веба - WWW</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+  <style>
+    /* Добавим стили для правой части экрана */
+    .right-panel {
+      float: right;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="buttons-container">
+    <!-- Вставляем контейнер для правой части экрана -->
+    <div class="right-panel">
+      <button class="custom-button" id="window-button">Window</button>
+      <button class="custom-button" id="navigator-button">Navigator</button>
+      <button class="custom-button" id="location-button">Location</button>
+      <button class="custom-button" id="screen-button">Screen</button>
+      <button class="cuSstom-button" id="hideMiddleImage">Скрыть средний рисунок</button>
+      <button class="cuSstom-button" id="showMiddleImage">Показать средний рисунок</button>
+      <button class="custom-button" id="swapImages">Поменять слои рисунков</button>
+    </div>
+  </div>
+  
+  <div class="text">
+    <main>
+      <h1 id="main-heading">Создание WWW</h1>
+      <p id="first-paragraph" onmouseover="changeText(this)" onmouseout="restoreText(this)">WWW (Всемирная паутина) является самой популярной службой Интернета, но ее нельзя отождествлять со Всемирной паутиной. Идея ее создания была реализована за четыре года (1989-1992гг.) программистом Тимоти Джон Бернерс-Ли и его коллегами. Хотя, как это часто бывает, сделано это было вовсе не на пустом месте. Например, понятие "гипертекст" первым придумал американский ученый Тед Нельсон еще в 1965 году. Датой же рождения Интернета счиается 29 октября 1969 года, а писатели фантасты задолго предсказывали появление нечто подобного.</p>
+      <h2 id="second-paragraph" onmouseover="changeStyle(this)" onmouseout="restoreStyle(this)">Хронология становления веба</h2>
+      <p class="news"><span class="date">25.12.1990 - </span>Первый в мире браузер</p>
+      <p class="news"><span class="date">06.08.1991 - </span>Первый в мире сайт</p>
+      <p class="news"><span class="date">01.10.1994 - </span>World Wide Web Consortium (W3C)</p>
+      <p class="news"><span class="date">17.10.1994 - </span>Perl 5</p>
+      <p class="news"><span class="date">Начало 1995 года - </span>Apache HTTP Server</p>
+      <p class="news"><span class="date">23.05.1995 - </span>MySQL</p>
+      <p class="news"><span class="date">08.06.1995 - </span>Personal Home Page (PHP 1.0)</p>
+      <p class="news"><span class="date">17.12.1996 - </span>Cascading Style Sheets (CSS1)</p>
+    </main>
+  </div> 
+  <table>
+    <tr>
+        <th class="style1-alternate" onmouseover="changeText1(this)" onmouseout="restoreText(this)">квадрат 1</th>
+        <th class="style1-alternate" onmouseover="changeText2(this)" onmouseout="restoreText(this)">квадрат 2</th>
+    </tr>
+    <tr>
+        <th class="style1-alternate" onmouseover="changeText3(this)" onmouseout="restoreText(this)">квадрат 3</th>
+        <th class="style1-alternate" onmouseover="changeText4(this)" onmouseout="restoreText(this)">квадрат 4</th>
+    </tr>
+  </tr>
+  </table>
+  <div class="image-container">
+    <img src="image1.jpg" alt="Image 1" name="image1" style="z-index: 1;">
+    <img src="image2.jpg" alt="Image 2" name="image2" style="z-index: 2;">
+    <img src="image3.jpg" alt="Image 3" name="image3" style="z-index: 3;">
+  </div>
+  <script>
+   
+
+    // Получаем ссылки на изображения и кнопки
+const images = document.querySelectorAll('.image-container img');
+const hideMiddleImageButton = document.getElementById('hideMiddleImage');
+const showMiddleImageButton = document.getElementById('showMiddleImage');
+const swapImagesButton = document.getElementById('swapImages');
+
+// Обработчик для скрытия среднего изображения
+hideMiddleImageButton.addEventListener('click', function() {
+  const middleImage = Array.from(images).find(image => image.style.zIndex === '2');
+  if (middleImage) {
+    middleImage.style.display = 'none';
+  }
+});
+
+// Обработчик для показа среднего изображения
+showMiddleImageButton.addEventListener('click', function() {
+  const middleImage = Array.from(images).find(image => image.style.zIndex === '2');
+  if (middleImage) {
+    middleImage.style.display = 'block';
+  }
+});
+
+// Обработчик для замены слоев рисунков
+swapImagesButton.addEventListener('click', function() {
+  const tempImage = document.createElement('img');
+// Клонируем первое изображение и заменяем его на второе
+const image1 = images[0];
+const image2 = images[2];
+tempImage.src = image1.src;
+image1.src = image2.src;
+image2.src = tempImage.src;
+});
+
+    // Получаем все элементы таблицы с классами "style1" и "style2"
+const cells = document.querySelectorAll('.style1, .style2');
+
+//
+
+// Назначаем обработчики событий для каждой ячейки
+cells.forEach(function(cell) {
+  cell.addEventListener('mouseover', function() {
+    applyAlternateStyle(this); // Применяем альтернативный стиль при наведении
+  });
+
+  cell.addEventListener('mouseout', function() {
+    restoreStyle(this); // Восстанавливаем исходный стиль при отведении мыши
+  });
+});
+
+  // Обработчик кнопки "Location"
+document.getElementById('location-button').addEventListener('click', function() {
+  // Получение информации из объекта location
+  const userName = prompt('Введите ваше имя:');
+  const documentURL = location.href;
+
+  // Формирование сообщения
+  let message = `Имя пользователя: ${userName || 'Не указано'}`;
+  message += `\nАдрес загруженного документа: ${documentURL}`;
+
+  // Вывод информации в окно сообщения
+  alert(message);
+});
+
+document.getElementById('screen-button').addEventListener('click', function() {
+  // Создаем строку с информацией о параметрах экрана
+  const screenInfo = `
+    Ширина экрана: ${screen.width} пикселей
+    Высота экрана: ${screen.height} пикселей
+    Глубина цвета: ${screen.colorDepth} бит
+  `;
+
+  // Отображаем информацию в окне подтверждения
+  const userConfirmed = confirm(screenInfo);
+
+  // Если пользователь нажал "Ок", выводим информацию в окне браузера
+  if (userConfirmed) {
+    alert(screenInfo);
+  }
+});
+
+document.getElementById('navigator-button').addEventListener('click', function() {
+  // Получение информации из объекта navigator
+  const browserInfo = {
+    appName: navigator.appName,
+    appVersion: navigator.appVersion,
+    userAgent: navigator.userAgent,
+    platform: navigator.platform
+  };
+
+  // Формирование сообщения
+  const message = `
+    Тип браузера: ${browserInfo.appName}
+    Версия браузера: ${browserInfo.appVersion}
+    User Agent: ${browserInfo.userAgent}
+    Платформа: ${browserInfo.platform}
+  `;
+
+  // Вывод информации в окно сообщения
+  alert(message);
+});
+
+ // Обработчик кнопки "Window"
+ document.getElementById('window-button').addEventListener('click', function() {
+      // Открытие окна сообщения с текстом из строки состояния браузера
+      alert('Текущая строка состояния браузера: ' + window.location.href);
+
+      // Замена содержимого строки состояния
+      window.location.href = 'https://www.microsoft.com/ru-ru/software-download/windows10'; // Замените ссылку на свою
+    });
+
+    const head = document.querySelector('head');
+    const lastModifiedMeta = document.createElement('meta');
+
+    const lastModified = new Date(document.lastModified);
+    lastModifiedMeta.name = 'last-modified';
+    lastModifiedMeta.content = lastModified.toUTCString();
+
+    head.appendChild(lastModifiedMeta);
+
+
+     // Получаем ссылку на заголовок
+  const mainHeading = document.getElementById('main-heading');
+
+// Обработчик события наведения мыши
+mainHeading.addEventListener('mouseover', function() {
+    // Изменяем текст строки состояния при наведении мыши
+    window.status = 'Читай текст!';
+});
+
+// Обработчик события отведения мыши
+mainHeading.addEventListener('mouseout', function() {
+    // Изменяем текст строки состояния при отведении мыши
+    window.status = 'Продолжение работы';
+});
+
+// Функция для изменения цвета и шрифта первого абзаца
+function changeText(element) {
+            element.style.color = 'red';
+            element.style.fontFamily = 'Arial, sans-serif';
+        }
+        function changeText1(element) {
+            element.style.color = 'yellow';
+            element.style.background = 'blue';
+            element.style.fontFamily = 'Verdana, sans-serif';
+        }
+        function changeText2(element) {
+            element.style.color = 'blue';
+            element.style.background = 'purple';
+            element.style.fontFamily = 'Trebuchet MS, sans-serif';
+        }
+        function changeText3(element) {
+            element.style.color = 'green';
+            element.style.background = 'yellow';
+            element.style.fontFamily = 'Verdana, sans-serif';
+        }
+        function changeText4(element) {
+            element.style.color = 'white';
+            element.style.background = 'black';
+            element.style.fontFamily = 'Trebuchet MS, sans-serif';
+        }
+        // Функция для восстановления стилей первого абзаца
+        function restoreText(element) {
+            element.style.color = '';
+            element.style.fontFamily = '';
+            element.style.background = '';
+        }
+
+        // Функция для изменения размера правого поля и отступа первой строки второго абзаца
+        function changeStyle(element) {
+            element.style.paddingRight = '3cm';
+            element.style.textIndent = '2.5cm';
+        }
+
+        // Функция для восстановления стилей второго абзаца
+        function restoreStyle(element) {
+            element.style.paddingRight = '';
+            element.style.textIndent = '';
+        }
+  </script>
+</body>
+</html>

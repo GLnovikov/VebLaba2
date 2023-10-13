@@ -1,0 +1,307 @@
+/* !!! Шаблон в две колонки с адаптивным дизайном и с учетом элементарной семантики !!! */
+/* Правила для экранной версии представления данных */
+@media screen {
+/* Общие установки делающие верстку макетов сайта более понятной */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Установки для body: фона, семейства шрифтов и цвета шрифтов */
+body {
+  background: #fff url(/images/white-page.gif) scroll;
+  color: #000;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+/* Шрифт для "шапки", меню навигации, заголовков второго уровня в основном тексте, новостей, дат и "подвала" */
+.header, .menu, .text h1, .text h2, .text p.news, footer {
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* Общие правила оформления "шапки" и "подвала" */
+.header {
+  color: #fff;
+  background: #993333;
+  padding: 10px 0 3px 0;
+  margin: 0;
+}
+
+/* Оформление шапки */
+.header {
+  border-bottom: solid 5px #cc6666;
+  text-align: center;
+}
+
+/* !!! Блок навигации !!! */
+/* Позиционирование блока навигации */
+.menu {
+  margin-top: 40px;
+  float: left;
+  width: 20%;
+  text-align: left;
+  border-style: solid; 
+  border-width: 0 1px 0 0; 
+  border-color: #ccc;
+}
+
+/* В блоке навигации при помощи свойства display превращаем гиперссылки и
+   контейнер <span>, из строчных элементов в блочные,
+   тогда можно указывать ширину при помощи свойства width */
+.menu a, .menu span {
+  background-color: #e5e5e5;
+  padding: 2px 2px 2px 20px;
+  margin-top: 2px;
+  display: block;
+  width: 100%;
+  color: black;
+}
+
+/* Отображение ненажатых "кнопок" */
+.menu a {
+  color: #000;
+  text-decoration: none;
+}
+/* Отображение обрамления "кнопок" непросмотренных и просмотренных */
+.menu a:link, .menu a:visited {
+  background: #fff;
+  border: solid 2px #fff;
+}
+/* Отображение обрамления "кнопок". Их стилей и цветов при наведении, нажатии, текущих, нажатых */
+.menu a:hover, .menu a:active, .menu a.current:link, .menu a.current:visited, .menu span {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #fff;
+  color: #999;
+  text-decoration: underline;
+}
+/* Отображение "кнопок" на страницах 3-го уровня */
+.menu a.current:link, .menu a.current:visited, .menu span {
+  background: #fff;
+  color: #ccc;
+}
+/* Отображение "кнопок" на страницах 2-го уровня */
+.menu span {
+  color: #999;
+  text-decoration: none;
+}
+/* Цвет фона "кнопок" при наведении и нажатии */
+.menu a.current:hover, .menu a.current:active {
+  background: #fff;
+}
+
+/* !!! Оформление элементов области основного текстового содержания страниц !!! */
+.text {
+  float:left;
+  width: 80%;
+  padding:0 20px;
+  min-height: 556px;
+  margin-top:30px;
+}
+
+/* Правила отображения заголовков h1 и h2 */
+.text h1, .text h2 {
+  box-sizing: border-box;
+  padding: 10px 0 10px 0;
+  font-weight: normal;
+color: #993333;
+}
+.text h1 {
+  font-size: 140%;
+}
+.text h2 {
+  font-size: 120%;
+}
+
+/* Абзацы основного текста оформляются в соответствии 
+   с традициями русскоязычного текстового набора */
+.text p {
+  text-align: justify;
+  text-indent: 1.5em;
+  margin: 0px;
+}
+
+/* Класс абзацев, предназначенный для новостей и хронологий */
+.text p.news {
+  text-align: left;
+  font-size: 95%;
+  text-indent: 0pt;
+  margin-top: .3em;
+  margin-bottom: .3em;
+} 
+/* Класс, позволяющий выделять полужирным начертанием дат новостей и хронологий */
+.date {
+  font-weight: bold;
+}
+
+/* Представление нумерованных и маркированных списков
+   в основном тексте */
+.text ul, .text ol {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  list-style-position: inside;
+}
+.text ul {
+  list-style-type: square;
+  list-style-position: inside;
+}
+
+/* Оформление ссылок в основном тексте */
+.text a {
+  text-decoration: none;
+}
+.text a:link {
+  color: #cc6633;
+}
+.text a:visited {
+  color: #999;
+}
+.text a:hover {
+  text-decoration: underline;
+}
+.text a:active {
+  color: #f00;
+}
+
+/* Оформление изображений в верхней левой части текста */
+div.img_lt {
+  float: left;
+  margin: 5px 15px 1px 0;
+  display: inline;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Убираем рамки вокруг изображений */
+.img {
+  border: 0;
+}
+
+/* Оформление тегов <summary> */
+summary {
+  cursor: pointer;
+  outline: 0;
+  font-size: 15px;
+  color: #cc6633;
+  float: right;
+}
+
+/* Отображение структурированных строк */
+.line-str1 {
+  padding-left: 15px;
+}
+.line-str2 {
+  padding-left: 30px;
+}
+.line-str3 {
+  padding-left: 45px;
+}
+
+/* !!! Оформление "подвала" и содержащихся в нем элементов !!! */
+footer {
+  width: 100%;
+  clear: both;
+  color: #fff;
+  background: #993333;
+  padding: 10px 0 10px 0;
+  font-size: 85%;
+  border-top: solid 5px #cc6666;
+  text-align: center;
+}
+footer a:link, footer a:visited, footer a:hover, footer a:active {
+  text-decoration: underline;
+  color: #fff;
+}
+address, footer span {
+  font-size: 75%;
+}
+}
+
+.S1 {
+  background-color: #ffffff;
+  color: #000;
+}
+
+.style2 {
+  background-color: #ffffff;
+  color: #000000;
+}
+.alternate-style {
+  background-color: #000000; /* Измените цвет фона на ваш выбор */
+  color: #00fe4c; /* Измените цвет текста на ваш выбор */
+  /* Другие стили, такие как шрифт и отступы, могут быть добавлены по вашему усмотрению */
+}
+.Alternate-style {
+  background-color: #ffffff; /* Измените цвет фона на ваш выбор */
+  color: #000000; /* Измените цвет текста на ваш выбор */
+  /* Другие стили, такие как шрифт и отступы, могут быть добавлены по вашему усмотрению */
+}
+/* Альтернативные стили */
+.style1-alternate {
+  background-color: #e37900;
+  color: #000000;
+}
+
+.style2-alternate {
+  background-color: #0015ff;
+  color: #FFF;
+}
+/* !!! Правила, определяющие мобильную версию для смартфонов !!! */
+@media only screen and (max-width:620px) {
+.menu, .text {
+  width:100%;
+}
+}
+/* Стили для кнопок и контейнера */
+.buttons-container {
+  position: staticF;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+.Buttons-container {
+  position: fixed;
+  top: 0%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+.custom-button {
+  display: block;
+  margin: 10px 0; /* Изменил margin-bottom на margin */
+  padding: 10px;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 120px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.cuSstom-button {
+  display: block;
+  margin: 10px 0; /* Изменил margin-bottom на margin */
+  padding: 10px;
+  background-color: #8634d8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 120px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+  background-color: #b6d81e;
+}
+.cuSstom-button:hover {
+  background-color: #ff2020;
+}
